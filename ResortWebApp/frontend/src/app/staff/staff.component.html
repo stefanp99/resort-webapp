@@ -1,0 +1,98 @@
+<div class="layout">
+    <div class="findStaffByHotel">
+        <h3>Find staff by hotel</h3>
+        <form [formGroup]="findByHotelForm" (ngSubmit)="findByHotel()">
+            <label for="hotelNumber">Hotel number</label>
+            <select id="hotelNumber" type="number" formControlName="hotelNumber" class="selectForm">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+            <br><br><br>
+
+            <button class="button" type="submit">Find staff</button>
+        </form>
+        <br><br>
+        <div *ngIf="staffList">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Occupation</th>
+                </tr>
+                <tr *ngFor="let staff of staffList">
+                    <td>{{staff.name}}</td>
+                    <td>{{staff.surname}}</td>
+                    <td>{{staff.occupation}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="addStaff">
+        <h3>Add staff</h3>
+        <form [formGroup]="addForm" (ngSubmit)="addStaff()">
+            <label for="name">
+                First name:
+            </label>
+            <input id="name" type="text" formControlName="name" class="searchForm">
+            <br>
+            <label for="surname">
+                Last name:
+            </label>
+            <input id="surname" type="text" formControlName="surname" class="searchForm">
+            <br>
+            <label for="occupation">
+                Occupation:
+            </label>
+            <input id="age" type="text" formControlName="occupation" class="searchForm">
+            <br><br><br>
+
+            <button class="button" type="submit">Add</button>
+        </form>
+    </div>
+
+    <div class="updateStaff">
+        <h3>Update staff</h3>
+        <form [formGroup]="updateForm" (ngSubmit)="updateStaff()">
+            <label for="staffId">
+                Staff ID:
+            </label>
+            <input id="staffId" type="number" formControlName="staffId" class="searchForm">
+            <br>
+            <label for="name">
+                First name:
+            </label>
+            <input id="name" type="text" formControlName="name" class="searchForm">
+            <br>
+            <label for="surname">
+                Last name:
+            </label>
+            <input id="surname" type="text" formControlName="surname" class="searchForm">
+            <br>
+            <label for="occupation">
+                Occupation:
+            </label>
+            <input id="occupation" type="text" formControlName="occupation" class="searchForm">
+            <br><br><br>
+
+            <button class="button" type="submit">Update</button>
+        </form>
+    </div>
+
+    <div class="deleteStaff">
+        <h3>Remove staff by ID</h3>
+        <form [formGroup]="deleteForm" (ngSubmit)="deleteStaff()">
+            <label for="staffId">
+                Staff ID:
+            </label>
+            <input id="staffId" type="number" formControlName="staffId" class="searchForm">
+            <br><br>
+
+            <button class="button" type="submit">Remove</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="layout">
+    <div class="upcomingActivities">
+        <h3>Get activities by day</h3>
+        <form [formGroup]="upcomingActivitiesForm" (ngSubmit)="getActivitiesAtIndex()">
+            <label for="dayOfWeek">
+                Day of week:
+            </label>
+
+            <select id="dayOfWeek" type="string" formControlName="dayOfWeek" class="selectForm">
+                <option *ngFor="let dayOfWeek of weekdays" [ngValue]="dayOfWeek">
+                    {{dayOfWeek}}
+                </option>
+            </select>
+            <br><br><br>
+
+            <button class="button" type="submit">Find activities</button>
+        </form>
+
+        <div *ngFor="let activity of upcomingActivities">
+            <p class="activityName"> {{activity.activityName}} </p>
+            <div *ngIf="activity.hotelNumber">
+                <p>Hotel number: {{activity.hotelNumber}}</p>
+            </div>
+            <p>Max number of participants: {{activity.maxParticipants}}</p>
+            <div *ngIf="activity.indoor; else outdoor">
+                <label for="indoor">Indoor: </label>
+                <input type="checkbox" name="indoor" checked onclick="return false;">
+            </div>
+            <ng-template #outdoor>
+                <label for="indoor">Indoor: </label>
+                <input type="checkbox" name="indoor" onclick="return false;">
+            </ng-template>
+            <br><br>
+        </div>
+    </div>
+
+    <div class="getStaffByActivity">
+        <h3>Get staff by activity</h3>
+        <form [formGroup]="staffByActivityForm" (ngSubmit)="getStaffByActivity()">
+            <label for="activity">
+                Activity:
+            </label>
+
+            <select id="activity" type="string" formControlName="activity" class="selectForm">
+                <option *ngFor="let activity of activities" [ngValue]="activity">
+                    {{activity.activityName}}
+                </option>
+            </select>
+            <br><br><br>
+
+            <button class="button" type="submit">Find staff by activity</button>
+        </form>
+
+        <div *ngFor="let staffMember of staff">
+            <p>Name: {{staffMember.name}} {{staffMember.surname}}</p>
+            <p>Occupation: {{staffMember.occupation}}</p>
+            <br><br>
+        </div>
+    </div>
+</div>

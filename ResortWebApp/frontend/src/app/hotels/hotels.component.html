@@ -1,0 +1,44 @@
+<div class="layout">
+
+    <div class="hotelsActivities">
+        <h3>Hotels and activities</h3>
+        <table>
+            <tr>
+                <th>Hotel</th>
+                <th>Activity</th>
+            </tr>
+            <tr *ngFor="let hotel of hotelsActivities">
+                <td>{{hotel.hotelNumber}}</td>
+                <td>{{hotel.activityName}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="averagePricePerHotel">
+        <h3>Average price per night by hotel</h3>
+        <table>
+            <tr>
+                <th>Hotel</th>
+                <th>Average price per night</th>
+            </tr>
+            <tr *ngFor="let hotel of averagePricesPerHotel">
+                <td>{{hotel.hotelNumber}}</td>
+                <td>{{hotel.averagePricePerNight}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="hotelCapacity">
+        <h3>Guest capacity by hotel</h3>
+        <table>
+            <tr>
+                <th>Hotel</th>
+                <th>Guest capacity</th>
+            </tr>
+            <tr *ngFor="let hotel of hotelCapacities">
+                <td>{{hotel.hotelNumber}}</td>
+                <td>{{hotel.hotelCapacity}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

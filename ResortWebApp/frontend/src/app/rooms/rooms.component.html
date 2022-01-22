@@ -1,0 +1,67 @@
+<div class="layout">
+    <div class="fullyOccupiedRooms">
+        <h3>Fully occupied rooms: <b>{{nrOccupiedRooms}}</b></h3>
+    </div>
+    <div class="rooms">
+        <h3>Find info about room</h3>
+        <form [formGroup]="roomsForm" (ngSubmit)="getRoomByRoomNumber()">
+            <label for="roomNumber">
+                Room number:
+            </label>
+
+            <select id="roomNumber" type="number" formControlName="roomNumber" class="selectForm">
+                <option *ngFor="let room of rooms" [ngValue]="room">
+                    {{room.roomNumber}}
+                </option>
+            </select>
+
+            <br><br>
+            <button class="button" type="submit">Find</button>
+        </form>
+
+        <div *ngFor="let room of foundRooms" class="room">
+            <p>Price per night: {{room.pricePerNight}}</p>
+            <p>Hotel number: {{room.hotelNumber}}</p>
+            <p>Room size: {{room.roomSize}}</p>
+            <p>Max number of guests: {{room.maxNumberOfGuests}}</p>
+            <div *ngIf="room.hasBalcony === 1; else noBalcony">
+                <label for="hasBalcony">Balcony: </label>
+                <input type="checkbox" name="hasBalcony" checked onclick="return false;">
+            </div>
+
+            <ng-template #noBalcony>
+                <label for="hasBalcony">Balcony: </label>
+                <input type="checkbox" name="hasBalcony" onclick="return false;">
+            </ng-template>
+        </div>
+    </div>
+
+
+
+    <div class="occupiedRooms">
+        <h3>Find room occupants</h3>
+        <form [formGroup]="occupiedRoomsForm" (ngSubmit)="getGuestsByRoom()">
+            <label for="roomNumber">
+                Room number:
+            </label>
+            <select id="roomNumber" type="number" formControlName="roomNumber" class="selectForm">
+                <option *ngFor="let occupiedRoom of occupiedRooms" [ngValue]="occupiedRoom">
+                    {{occupiedRoom.roomNumber}}
+                </option>
+            </select>
+
+            <br><br>
+            <button class="button" type="submit">Find</button>
+        </form>
+
+        <div *ngFor="let guest of guests" class="guests">
+            <p>Name: {{guest.name}} {{guest.surname}}</p>
+            <p>Arrival: {{guest.arrivalDate}}</p>
+            <p>Departure: {{guest.departureDate}}</p>
+            <p>Room number: {{guest.roomNumber}}</p>
+            <p>ID: {{guest.guestId}}</p>
+            <br>
+        </div>
+    </div>
+
+</div>

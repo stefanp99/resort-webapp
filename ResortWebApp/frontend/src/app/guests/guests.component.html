@@ -1,0 +1,116 @@
+<div class="layout">
+    <div class="searchGuests">
+        <h3>Search guests by name, arrival/departure date or id</h3>
+        <form [formGroup]="searchForm" (ngSubmit)="findGuest()">
+            <div>
+                <input id="value" type="text" formControlName="value">
+                <br><br>
+                <button class="button" type="submit">Search</button>
+            </div>
+        </form>
+
+        <div *ngFor="let guest of foundGuests" class="guests">
+            <p>Name: {{guest.name}} {{guest.surname}}</p>
+            <p>Arrival: {{guest.arrivalDate}}</p>
+            <p>Departure: {{guest.departureDate}}</p>
+            <p>Room number: {{guest.roomNumber}}</p>
+            <p>ID: {{guest.guestId}}</p>
+            <br>
+        </div>
+    </div>
+
+    <div class="addGuest">
+        <h3>Add guest</h3>
+        <form [formGroup]="addForm" (ngSubmit)="addGuest()">
+            <label for="name">
+                First name:
+            </label>
+            <input id="name" type="text" formControlName="name" class="searchForm">
+            <br>
+            <label for="surname">
+                Last name:
+            </label>
+            <input id="surname" type="text" formControlName="surname" class="searchForm">
+            <br>
+            <label for="age">
+                Age:
+            </label>
+            <input id="age" type="number" formControlName="age" class="searchForm">
+            <br>
+            <label for="departureDate">
+                Departure Date:
+            </label>
+            <input id="departureDate" type="date" formControlName="departureDate">
+            <br>
+            <label for="roomNumber">
+                Available rooms:
+            </label>
+            <select id="roomNumber" type="number" formControlName="roomNumber" class="selectForm">
+                <option></option>
+                <option *ngFor="let availableRoom of availableRooms" [ngValue]="availableRoom">
+                    {{availableRoom.roomNumber}}
+                </option>
+            </select>
+            <br><br><br>
+
+            <button class="button" type="submit">Add</button>
+        </form>
+    </div>
+
+    <div class="updateGuest">
+        <h3>Change guest room number or departure date</h3>
+        <form [formGroup]="updateForm" (ngSubmit)="updateGuest()">
+            <label for="guestId">
+                Guest ID:
+            </label>
+            <input id="guestId" type="number" formControlName="guestId" class="searchForm">
+            <br>
+            <label for="departureDate">
+                Departure Date:
+            </label>
+            <input id="departureDate" type="date" formControlName="departureDate">
+            <br>
+            <label for="roomNumber">
+                Available rooms:
+            </label>
+            <select id="roomNumber" type="number" formControlName="roomNumber" class="selectForm">
+                <option></option>
+                <option *ngFor="let availableRoom of availableRooms" [ngValue]="availableRoom">
+                    {{availableRoom.roomNumber}}
+                </option>
+            </select>
+            <br><br>
+
+            <button class="button" type="submit">Update</button>
+        </form>
+    </div>
+
+    <div class="deleteGuest">
+        <h3>Remove guest by ID</h3>
+        <form [formGroup]="deleteForm" (ngSubmit)="deleteGuest()">
+            <label for="guestId">
+                Guest ID:
+            </label>
+            <input id="guestId" type="number" formControlName="guestId" class="searchForm">
+            <br><br>
+
+            <button class="button" type="submit">Remove</button>
+        </form>
+    </div>
+
+    <div class="guestsHotels">
+        <h3>Guests and hotels</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Hotel</th>
+            </tr>
+            <tr *ngFor="let guest of guestsHotels">
+                <td>{{guest.name}}</td>
+                <td>{{guest.surname}}</td>
+                <td>{{guest.hotelNumber}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
